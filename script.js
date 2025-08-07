@@ -18,15 +18,17 @@ const fetchJokes = async () => {
     }  
 }
 
-const copyJokeToClipboard = () => {
-    const jokeText = jokeDisplayEl.innerText;
+function copyJokeToClipboard() {
+      const text = document.getElementById("jokeDisplay").innerText;
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                window.alert('Joke copied to clipboard ✅');
+            })
+            .catch(err => {
+                window.alert('Failed to copy joke: ' + err);
+            });
 
-    navigator.clipboard.writeText(jokeText)
-        .then(() => alert("Text copied to clipboard!"))
-        .catch(err => alert("Failed to copy text: " + err));
-
-
-};
+}
 
 jokeButtonEl.addEventListener('click', fetchJokes);
 
